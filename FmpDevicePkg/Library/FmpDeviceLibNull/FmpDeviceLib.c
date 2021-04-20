@@ -42,6 +42,30 @@ RegisterFmpInstaller (
 }
 
 /**
+  Function that unloads a Firmware Management Device Library based driver instance when
+  the FmpDeviceLib supports the driver binding model.
+  If the FmpDeviceLib does not support the UEFI driver model, the FmpDeviceLib Unload Image
+  should return EFI_UNSUPPORTED.
+
+  @param[in]  ImageHandle  The driver handle managing the Firmware Management Protocol instance to unload.
+
+  @retval EFI_SUCCESS               Driver image was removed successfully.
+  @retval EFI_UNSUPPORTED           The device is not managed by a driver that follows
+                                      the UEFI Driver Model.
+  @retval EFI_INVALID_PARAMETER     ImageHandle is NULL.
+  @retval EFI_INVALID_PARAMETER     ImageHandle does not match driver image handle.
+  @retval other                     Driver image was not removed.
+**/
+EFI_STATUS
+EFIAPI
+BZ3342FmpDeviceLibUnloadImage (
+  IN EFI_HANDLE  ImageHandle
+  )
+{
+  return EFI_UNSUPPORTED;
+}
+
+/**
   Provide a function to uninstall the Firmware Management Protocol instance from a
   device handle when the device is managed by a driver that follows the UEFI
   Driver Model.  If the device is not managed by a driver that follows the UEFI

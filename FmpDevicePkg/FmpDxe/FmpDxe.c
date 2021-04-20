@@ -1816,6 +1816,27 @@ UninstallFmpInstance (
 /**
   Unloads the application and its installed protocol.
 
+  @param ImageHandle       Handle that identifies the image to be unloaded.
+
+  @retval EFI_SUCCESS      The image has been unloaded.
+
+**/
+EFI_STATUS
+EFIAPI
+BZ3342FmpDxeUnloadImage (
+  IN EFI_HANDLE       ImageHandle
+  )
+{
+  if (mFmpSingleInstance) {
+    return UninstallFmpInstance (ImageHandle);
+  } else {
+    return BZ3342FmpDeviceLibUnloadImage (ImageHandle);
+  }
+}
+
+/**
+  Unloads the application and its installed protocol.
+
   @param ImageHandle       Handle that identifies the image to be unloaded.
   @param  SystemTable      The system table.
 
